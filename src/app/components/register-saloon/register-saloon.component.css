@@ -6,6 +6,7 @@
 	margin-bottom: 1.5rem;
 	display: inline-block;
 	transition: color 0.2s;
+	cursor: pointer;
 }
 .back-link:hover {
 	color: #F0060B;
