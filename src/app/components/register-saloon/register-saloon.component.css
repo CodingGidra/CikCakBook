@@ -1,0 +1,78 @@
+.back-link {
+	color: #fff;
+	background: transparent;
+	font-size: 1rem;
+	text-decoration: underline;
+	margin-bottom: 1.5rem;
+	display: inline-block;
+	transition: color 0.2s;
+}
+.back-link:hover {
+	color: #F0060B;
+}
+body, :host {
+	font-family: 'Segoe UI', 'Arial', sans-serif;
+}
+
+.register-saloon-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 80vh;
+}
+
+.register-saloon-container h2 {
+	color: #fff;
+	font-size: 2rem;
+	margin-bottom: 2rem;
+}
+
+.register-saloon-container form {
+	background: #222;
+	padding: 2rem 2.5rem;
+	border-radius: 16px;
+	box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	min-width: 320px;
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.form-group label {
+	color: #fff;
+	font-size: 1.1rem;
+}
+
+.form-group input {
+	padding: 0.75rem;
+	font-size: 1.1rem;
+	border-radius: 8px;
+	border: 1px solid #333;
+	background: #333;
+	color: #fff;
+}
+
+.register-btn {
+	background: #F0060B;
+	color: #fff;
+	font-size: 1.1rem;
+	padding: 0.75rem 2rem;
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	transition: background 0.2s;
+}
+.register-btn:hover {
+	background: #b00408;
+}
+
+.back-link{
+    color: #000;
+}

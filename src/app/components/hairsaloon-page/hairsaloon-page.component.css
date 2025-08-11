@@ -1,0 +1,49 @@
+body, :host {
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+}
+.hairsaloon-main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 3vw;
+  background: #222;
+  color: #fff;
+  min-height: 80vh;
+}
+.hairsaloon-header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2rem;
+}
+.saloon-name {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #F0060B;
+}
+.saloon-desc {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-top: 0.5rem;
+}
+.hairsaloon-map-calendar {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  align-items: flex-start;
+}
+.map-section, .calendar-section {
+  background: #333;
+  border-radius: 12px;
+  padding: 1.5rem;
+  min-width: 300px;
+  flex: 1;
+}
+.map-placeholder, .calendar-placeholder {
+  background: #444;
+  color: #bbb;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  font-size: 1.1rem;
+}
