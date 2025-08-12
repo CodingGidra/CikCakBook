@@ -1,9 +1,13 @@
-<p>hairsaloon-page works!</p>
-<div class="hairsaloon-main-container">
+<p class="saloon-admin" *ngIf="user">Welcome, {{ user.username }}!</p>
+
+<div class="hairsaloon-main-container" *ngIf="shop">
   <div class="hairsaloon-header">
-    <div class="saloon-name">Barber King</div>
-    <div class="saloon-desc">The best fades and shaves in town. Walk-ins welcome!</div>
+    <div class="saloon-name">{{ shop.name }}</div>
+    <div class="saloon-desc">
+      The best fades and shaves in town. Walk-ins welcome!
+    </div>
   </div>
+
   <div class="hairsaloon-map-calendar">
     <div class="map-section">
       <h3>Location</h3>
@@ -14,4 +18,10 @@
       <div class="calendar-placeholder">Calendar for this week</div>
     </div>
   </div>
+</div>
+
+<div *ngIf="!user" class="not-logged-in-wrapper">
+  <p class="not-logged-in-message">
+    <strong>You are not logged in.</strong> Please sign in to view this saloon.
+  </p>
 </div>

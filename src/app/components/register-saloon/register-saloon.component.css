@@ -1,79 +1,56 @@
-.back-link {
-	color: #fff;
-	background: transparent;
-	font-size: 1rem;
-	text-decoration: underline;
-	margin-bottom: 1.5rem;
-	display: inline-block;
-	transition: color 0.2s;
-	cursor: pointer;
-}
-.back-link:hover {
-	color: #F0060B;
-}
-body, :host {
-	font-family: 'Segoe UI', 'Arial', sans-serif;
+/* Layout for sections side-by-side */
+.form-sections-wrapper {
+  display: flex;
+  gap: 30px; /* space between left and right */
+  flex-wrap: wrap; /* allows stacking on small screens */
 }
 
-.register-saloon-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	min-height: 80vh;
+/* Style for each section */
+.form-section {
+  flex: 1; /* make both sections equal width */
+  min-width: 100px; /* prevent being too narrow */
+  max-width: 500px;
+  background-color: #e8b017;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.register-saloon-container h2 {
-	color: #fff;
-	font-size: 2rem;
-	margin-bottom: 2rem;
+/* Headings inside sections */
+.form-section h3 {
+  margin-bottom: 15px;
 }
 
-.register-saloon-container form {
-	background: #222;
-	padding: 2rem 2.5rem;
-	border-radius: 16px;
-	box-shadow: 0 4px 24px rgba(0,0,0,0.2);
-	display: flex;
-	flex-direction: column;
-	gap: 1.5rem;
-	min-width: 320px;
-}
-
+/* Group styling */
 .form-group {
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
-.form-group label {
-	color: #fff;
-	font-size: 1.1rem;
+label {
+  font-weight: bold;
+  margin-bottom: 6px;
 }
 
-.form-group input {
-	padding: 0.75rem;
-	font-size: 1.1rem;
-	border-radius: 8px;
-	border: 1px solid #333;
-	background: #333;
-	color: #fff;
+input,
+textarea {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
+/* Submit button at bottom */
 .register-btn {
-	background: #F0060B;
-	color: #fff;
-	font-size: 1.1rem;
-	padding: 0.75rem 2rem;
-	border-radius: 8px;
-	border: none;
-	cursor: pointer;
-	transition: background 0.2s;
-}
-.register-btn:hover {
-	background: #b00408;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.back-link{
-    color: #000;
+.register-btn:hover {
+  background-color: #0056b3;
 }

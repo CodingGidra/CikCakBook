@@ -1,23 +1,83 @@
 <div class="register-saloon-container">
-	<a class="back-link" [routerLink]="['']">&#8592; Back to Landing Page</a>
-	<h2>Register Saloon</h2>
-	<form>
-		<div class="form-group">
-			<label for="saloonName">Saloon Name:</label>
-			<input type="text" id="saloonName" name="saloonName" required />
-		</div>
-		<div class="form-group">
-			<label for="location">Location:</label>
-			<input type="text" id="location" name="location" required />
-		</div>
-		<div class="form-group">
-			<label for="email">Email:</label>
-			<input type="email" id="email" name="email" required />
-		</div>
-		<div class="form-group">
-			<label for="subscription">Subscription Amount:</label>
-			<input type="number" id="subscription" name="subscription" min="0" required />
-		</div>
-		<button type="submit" class="register-btn">Register</button>
-	</form>
+  <a class="back-link" [routerLink]="['']">&#8592; Back to Landing Page</a>
+  <h2>Register Saloon</h2>
+
+  <!-- Bind form group and submit method -->
+  <form class="register-form" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-sections-wrapper">
+      <!-- SALOON INFO SECTION -->
+      <div class="form-section saloon-info">
+        <h3>Saloon Info</h3>
+
+        <div class="form-group">
+          <label for="saloonName">Saloon Name:</label>
+          <input type="text" id="saloonName" formControlName="saloonName" />
+        </div>
+
+        <div class="form-group">
+          <label for="location">Location:</label>
+          <input type="text" id="location" formControlName="location" />
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea id="description" formControlName="description" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="subscription">Subscription Amount:</label>
+          <input type="number" id="subscription" formControlName="subscription" />
+        </div>
+
+        <div class="form-group">
+          <label for="category">Barber Shop Category:</label>
+          <input type="text" id="category" formControlName="category" />
+        </div>
+
+        <div class="form-group">
+          <label for="openingHours">Opening Hours:</label>
+          <input type="text" id="openingHours" formControlName="openingHours" />
+        </div>
+      </div>
+
+      <!-- ADMIN USER INFO SECTION -->
+      <div class="form-section admin-info">
+        <h3>Admin User Info</h3>
+
+        <div class="form-group">
+          <label for="adminUsername">Admin Username:</label>
+          <input type="text" id="adminUsername" formControlName="adminUsername" />
+        </div>
+
+        <div class="form-group">
+          <label for="adminEmail">Admin Email:</label>
+          <input type="email" id="adminEmail" formControlName="adminEmail" />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Contact Phone:</label>
+          <input type="tel" id="phone" formControlName="phone" />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" formControlName="password" />
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password:</label>
+          <input type="password" id="confirmPassword" formControlName="confirmPassword" />
+        </div>
+
+        <input type="hidden" formControlName="role" />
+      </div>
+    </div>
+
+    <!-- Display errors -->
+    <div *ngIf="errorMessage" style="color: red; margin-top: 10px;">
+      {{ errorMessage }}
+    </div>
+
+    <button type="submit" class="register-btn">Register</button>
+  </form>
 </div>

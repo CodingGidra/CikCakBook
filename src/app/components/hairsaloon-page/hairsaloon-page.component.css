@@ -47,3 +47,23 @@ body, :host {
   text-align: center;
   font-size: 1.1rem;
 }
+
+.not-logged-in-wrapper {
+  background-color: black;              
+  min-height: 100vh;                  
+  display: flex;                         
+  justify-content: center;
+  align-items: center;
+}
+
+.not-logged-in-message {
+  background-color: yellow;              
+  color: black;
+  padding: 20px 40px;
+  border-radius: 10px;                    
+  border: 5px solid red;                  
+  font-weight: bold;                      
+  text-align: center;                     
+  max-width: 500px;                       
+}
+
