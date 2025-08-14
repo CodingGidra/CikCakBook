@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { NgIf } from '@angular/common';
-import { AuthService } from '../../services/AuthService'; // Your updated AuthService
+import { Router, RouterLink } from '@angular/router';
+import {AuthService} from '../../services/AuthService';
 
 @Component({
   selector: 'app-register-saloon',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule, NgIf, RouterLink],
   templateUrl: './register-saloon.component.html',
   styleUrls: ['./register-saloon.component.css']
 })
@@ -15,22 +16,21 @@ export class RegisterSaloonComponent {
   form: FormGroup;
   submitted = false;
   errorMessage = '';
+  successMessage = '';
 
   constructor(
     private fb: FormBuilder,
-    private auth: AuthService,
-    private router: Router
+    private http: HttpClient,
+    private router: Router,
+    private authService: AuthService
   ) {
     this.form = this.fb.group({
-      // Saloon Info
       saloonName: ['', Validators.required],
       location: ['', Validators.required],
       description: [''],
       subscription: [0, [Validators.required, Validators.min(0)]],
       category: [''],
       openingHours: [''],
-
-      // Admin Info
       adminUsername: ['', Validators.required],
       adminEmail: ['', [Validators.required, Validators.email]],
       phone: [''],
@@ -55,31 +55,17 @@ export class RegisterSaloonComponent {
       return;
     }
 
-    // Separate data into saloonData and adminData for AuthService
-    const saloonData = {
-      saloonName: rest.saloonName,
-      location: rest.location,
-      description: rest.description,
-      subscription: rest.subscription,
-      category: rest.category,
-      openingHours: rest.openingHours
-    };
+    console.log('Form submitted:', this.form.value);
 
-    const adminData = {
-      adminUsername: rest.adminUsername,
-      adminEmail: rest.adminEmail,
-      phone: rest.phone,
-      password: password
-      // 'role' is fixed as 'admin', we don't need to pass here
-    };
-
-    // Call the new service method
-    this.auth.registerSaloonAndAdmin(saloonData, adminData);
-
-    // Redirect the new admin directly to their saloon page
-    const user = this.auth.getCurrentUser();
-    if (user) {
-      this.router.navigate(['/saloon', user.barberShopId]);
-    }
+    if (this.form.valid) {
+    this.authService.registerSaloon(this.form.value).subscribe({
+      next: () => {
+        this.successMessage = 'Saloon successfully created! ';
+      },
+      error: () => {
+        this.errorMessage = 'Registration failed';
+      }
+    });
+  }
   }
 }

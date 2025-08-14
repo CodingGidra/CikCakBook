@@ -30,8 +30,10 @@ export class HairsaloonPageComponent implements OnInit {
       // Option 2: From current user (preferred if security matters)
       const shopId = this.user.barberShopId;
 
-      // Fetch that barber shop’s info
-      this.shop = this.auth.getBarberShopForUser(this.user.id);
+      const user = this.auth.getCurrentUser();
+  if (user) {
+    this.shop = user; // cijeli BarberShop objekat
+  }
     }
   }
 }

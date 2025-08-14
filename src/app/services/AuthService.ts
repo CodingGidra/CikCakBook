@@ -1,73 +1,60 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-interface User {
-  id: number;
-  username: string;
+export interface BarberShop {
+  id: string;
+  saloonName: string;
+  location: string;
+  description?: string;
+  subscription?: number;
+  category?: string;
+  openingHours?: string;
+  adminUsername: string;
+  adminEmail?: string;
+  phone?: string;
   password: string;
-  barberShopId: number;
-}
-
-interface BarberShop {
-  id: number;
-  name: string;
+  role?: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private users: User[] = [
-    { id: 1, username: 'alice', password: 'pass123', barberShopId: 101 },
-    { id: 2, username: 'bob', password: 'pass456', barberShopId: 102 },
-    { id: 3, username: 'carol', password: 'pass789', barberShopId: 101 }
-  ];
+  private barberShops: BarberShop[] = [];
+  private currentUser: BarberShop | null = null;
+  private apiUrl = 'http://localhost:3000';
 
-  private barberShops: BarberShop[] = [
-    { id: 101, name: 'Downtown Barbers' },
-    { id: 102, name: 'Uptown Cuts' }
-  ];
+  constructor(private http: HttpClient) {}
 
-  private currentUser: User | null = null;
+  // Sign in provjera preko servera
+  signIn(username: string, password: string): Observable<boolean> {
+  return this.http.get<BarberShop[]>(`${this.apiUrl}/barberShops`).pipe(
+    map((shops) => {
+      const user = shops.find(
+        (s) => s.adminUsername === username && s.password === password
+      );
+      if (user) {
+        this.currentUser = user;
+        return true;
+      }
+      return false;
+    })
+  );
+}
 
-  signIn(username: string, password: string): boolean {
-    const user = this.users.find(u => u.username === username && u.password === password);
-    if (user) {
-      this.currentUser = user;
-      return true;
-    }
-    return false;
-  }
-
-  getCurrentUser(): User | null {
+  getCurrentUser(): BarberShop | null {
     return this.currentUser;
   }
 
-  getBarberShopForUser(userId: number): BarberShop | undefined {
-    const user = this.users.find(u => u.id === userId);
-    return user ? this.barberShops.find(b => b.id === user.barberShopId) : undefined;
+  // Register new barber shop
+  registerSaloon(formData: BarberShop) {
+    return this.http.post(`${this.apiUrl}/barberShops`, formData);
   }
 
-  registerSaloonAndAdmin(saloonData: any, adminData: any): void {
-    const newBarberShopId = this.barberShops.length > 0
-      ? Math.max(...this.barberShops.map(b => b.id)) + 1
-      : 101;
-
-    this.barberShops.push({
-      id: newBarberShopId,
-      name: saloonData.saloonName
-    });
-
-    const newUserId = this.users.length > 0
-      ? Math.max(...this.users.map(u => u.id)) + 1
-      : 1;
-
-    this.users.push({
-      id: newUserId,
-      username: adminData.adminUsername,
-      password: adminData.password,
-      barberShopId: newBarberShopId
-    });
-
-    this.currentUser = this.users.find(u => u.id === newUserId) || null;
+  // Optionally: load barberShops from API (for testing/mock)
+  loadBarberShops() {
+    return this.http.get<BarberShop[]>(`${this.apiUrl}/barberShops`);
   }
 }

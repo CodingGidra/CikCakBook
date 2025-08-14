@@ -1,6 +1,9 @@
+/* Global */
 body, :host {
   font-family: 'Segoe UI', 'Arial', sans-serif;
 }
+
+/* Glavni kontejner */
 .hairsaloon-main-container {
   display: flex;
   flex-direction: column;
@@ -10,60 +13,137 @@ body, :host {
   color: #fff;
   min-height: 80vh;
 }
+
+/* Header sekcija */
 .hairsaloon-header {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   gap: 2rem;
+  flex-wrap: wrap;
 }
+
 .saloon-name {
   font-size: 2.2rem;
   font-weight: 700;
   color: #F0060B;
 }
+
 .saloon-desc {
   font-size: 1.2rem;
   color: #fff;
   margin-top: 0.5rem;
 }
+
+/* Map + Calendar */
 .hairsaloon-map-calendar {
   display: flex;
   flex-direction: row;
   gap: 3rem;
   align-items: flex-start;
 }
-.map-section, .calendar-section {
+
+.calendar-section,
+.map-section {
   background: #333;
   border-radius: 12px;
   padding: 1.5rem;
-  min-width: 300px;
+  min-width: 200px;
   flex: 1;
 }
-.map-placeholder, .calendar-placeholder {
+
+.calendar-section {
+  flex: 2;
+}
+
+.map-section {
+  flex: 1;
+}
+
+.calendar-placeholder,
+.map-placeholder {
+  height: 250px;
   background: #444;
   color: #bbb;
   border-radius: 8px;
   padding: 2rem;
   text-align: center;
   font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.not-logged-in-wrapper {
-  background-color: black;              
-  min-height: 100vh;                  
-  display: flex;                         
-  justify-content: center;
+.calendar-actions {
+  margin-top: 16px;
+}
+
+.btn-primary {
+  padding: 8px 16px;
+  background: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+/* Posebna sekcija slidera */
+.image-slider-section {
+  margin-top: 3rem;
+  padding: 2rem 0;
+  background-color: #111;
+  color: #fff;
+  text-align: center;
+}
+
+.image-slider-section h3 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  color: #F0060B;
+}
+
+/* Slider container */
+.image-slider {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+/* Slider track za beskonačni loop */
+.slider-track {
+  display: flex;
+  width: calc(10 * 300px); /* broj slika * širina svake slike */
+  animation: scrollRight 20s linear infinite;
+}
+
+/* Svaka slika */
+.slider-track img {
+  width: 300px;
+  height: 150px;
+  object-fit: cover;
+  margin-right: 16px;
+  border-radius: 8px;
+}
+
+/* Beskonačni scroll s lijeva na desno */
+@keyframes scrollRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .slider-track img {
+    width: 200px;
+    height: 120px;
+  }
+}
+.map-details {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
   align-items: center;
 }
 
-.not-logged-in-message {
-  background-color: yellow;              
-  color: black;
-  padding: 20px 40px;
-  border-radius: 10px;                    
-  border: 5px solid red;                  
-  font-weight: bold;                      
-  text-align: center;                     
-  max-width: 500px;                       
+.map-details p {
+  margin: 0;
 }
-

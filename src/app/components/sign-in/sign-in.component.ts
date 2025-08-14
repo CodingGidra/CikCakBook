@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { AuthService } from '../../services/AuthService';
@@ -10,7 +15,7 @@ import { AuthService } from '../../services/AuthService';
   standalone: true,
   imports: [ReactiveFormsModule, RouterLink, NgIf],
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.css']
+  styleUrls: ['./sign-in.component.css'],
 })
 export class SignInComponent {
   form: FormGroup;
@@ -23,25 +28,30 @@ export class SignInComponent {
   ) {
     this.form = this.fb.group({
       username: ['', Validators.required], // Matches AuthService property name
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
   }
 
   submit() {
-    if (this.form.invalid) {
-      return;
-    }
+    if (this.form.invalid) return;
 
     const { username, password } = this.form.value;
-    const loggedIn = this.auth.signIn(username, password);
 
-    if (loggedIn) {
-      const user = this.auth.getCurrentUser();
-      if (user) {
-        this.router.navigate(['/saloon', user.barberShopId]);
+    this.auth.signIn(username, password).subscribe({
+      next: (loggedIn) => {
+        if (loggedIn) {
+          const user = this.auth.getCurrentUser();
+          if (user) {
+            this.router.navigate(['/saloon', user.id]);
+          }
+        } else {
+          this.error = 'Invalid username or password';
+        }
+      },
+      error: () => {
+        this.error = 'Server error, try again later';
       }
-    } else {
-      this.error = 'Invalid username or password';
-    }
+    });
   }
+
 }
