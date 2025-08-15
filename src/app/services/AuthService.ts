@@ -19,7 +19,7 @@ export interface BarberShop {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private barberShops: BarberShop[] = [];
@@ -30,19 +30,23 @@ export class AuthService {
 
   // Sign in provjera preko servera
   signIn(username: string, password: string): Observable<boolean> {
-  return this.http.get<BarberShop[]>(`${this.apiUrl}/barberShops`).pipe(
-    map((shops) => {
-      const user = shops.find(
-        (s) => s.adminUsername === username && s.password === password
-      );
-      if (user) {
-        this.currentUser = user;
-        return true;
-      }
-      return false;
-    })
-  );
-}
+    return this.http.get<BarberShop[]>(`${this.apiUrl}/barberShops`).pipe(
+      map((shops) => {
+        const user = shops.find(
+          (s) => s.adminUsername === username && s.password === password
+        );
+        if (user) {
+          this.currentUser = user;
+          return true;
+        }
+        return false;
+      })
+    );
+  }
+
+  getSaloonById(): BarberShop | null {
+    return this.currentUser;
+  }
 
   getCurrentUser(): BarberShop | null {
     return this.currentUser;

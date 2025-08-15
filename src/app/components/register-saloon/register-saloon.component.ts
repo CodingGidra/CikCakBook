@@ -1,16 +1,21 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { NgIf } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
-import {AuthService} from '../../services/AuthService';
+import { AuthService } from '../../services/AuthService';
 
 @Component({
   selector: 'app-register-saloon',
   standalone: true,
   imports: [ReactiveFormsModule, NgIf, RouterLink],
   templateUrl: './register-saloon.component.html',
-  styleUrls: ['./register-saloon.component.css']
+  styleUrls: ['./register-saloon.component.css'],
 })
 export class RegisterSaloonComponent {
   form: FormGroup;
@@ -36,36 +41,38 @@ export class RegisterSaloonComponent {
       phone: [''],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
-      role: ['admin']
+      role: ['admin'],
     });
   }
 
   submit() {
-    this.submitted = true;
-    this.errorMessage = '';
+  this.submitted = true;
+  this.errorMessage = '';
+  this.successMessage = '';
 
-    if (this.form.invalid) {
-      this.errorMessage = 'Please fill all required fields correctly.';
-      return;
-    }
-
-    const { password, confirmPassword, ...rest } = this.form.value;
-    if (password !== confirmPassword) {
-      this.errorMessage = 'Passwords do not match.';
-      return;
-    }
-
-    console.log('Form submitted:', this.form.value);
-
-    if (this.form.valid) {
-    this.authService.registerSaloon(this.form.value).subscribe({
-      next: () => {
-        this.successMessage = 'Saloon successfully created! ';
-      },
-      error: () => {
-        this.errorMessage = 'Registration failed';
-      }
-    });
+  if (this.form.invalid) {
+    this.errorMessage = 'Please fill all required fields correctly.';
+    return;
   }
+
+  const { password, confirmPassword, ...rest } = this.form.value;
+  if (password !== confirmPassword) {
+    this.errorMessage = 'Passwords do not match.';
+    return;
   }
+
+  this.authService.registerSaloon(this.form.value).subscribe({
+    next: () => {
+      this.successMessage = 'Saloon successfully created!';
+      this.form.reset();        // Reset forme
+      this.submitted = false;   // Reset submit flag
+      // Opcionalno: redirect
+      // this.router.navigate(['/sign-in']);
+    },
+    error: () => {
+      this.errorMessage = 'Registration failed';
+    }
+  });
+}
+
 }
