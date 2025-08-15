@@ -1,39 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgIf } from '@angular/common';
-import { AuthService } from '../../services/AuthService';
+import { AuthService, BarberShop } from '../../services/AuthService';
 
 @Component({
   selector: 'app-hairsaloon-page',
   standalone: true,
   imports: [NgIf],
   templateUrl: './hairsaloon-page.component.html',
-  styleUrls: ['./hairsaloon-page.component.css']
+  styleUrls: ['./hairsaloon-page.component.css'],
 })
 export class HairsaloonPageComponent implements OnInit {
-  user: any = null;
-  shop: any = null;
+  user: BarberShop | null = null;   // opcionalno za Welcome
+  shop: BarberShop | null = null;   // ovo je saloon koji prikazujemo
 
-  constructor(
-    private route: ActivatedRoute,
-    private auth: AuthService
-  ) {}
+  constructor(private route: ActivatedRoute, private auth: AuthService) {}
 
   ngOnInit(): void {
-    // Get the current logged-in user
+    // Dohvati trenutno ulogovanog korisnika (opcionalno)
     this.user = this.auth.getCurrentUser();
 
-    if (this.user) {
-      // Option 1: From URL param (id)
-      const shopIdFromUrl = Number(this.route.snapshot.paramMap.get('id'));
-
-      // Option 2: From current user (preferred if security matters)
-      const shopId = this.user.barberShopId;
-
-      const user = this.auth.getCurrentUser();
-  if (user) {
-    this.shop = user; // cijeli BarberShop objekat
-  }
+    // Dohvati saloon iz URL-a
+    const saloonId = this.route.snapshot.paramMap.get('id');
+    if (saloonId) {
+      this.auth.loadBarberShops().subscribe((shops) => {
+        this.shop = shops.find((s) => s.id === saloonId) || null;
+      });
     }
   }
 }

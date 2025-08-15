@@ -1,7 +1,22 @@
 <app-nav-bar />
 <main class="main">
 	<div class="landing-content">
-			<span class="search-label">Find hair-cut saloon.&nbsp;</span> 
-			<input type="text" class="search-input" placeholder="Search..." />
-	</div>
+  <span class="search-label">Find hair-cut saloon.&nbsp;</span> 
+  <input 
+    type="text" 
+    class="search-input" 
+    placeholder="Search..." 
+    [(ngModel)]="searchTerm" 
+    (ngModelChange)="onSearch()"
+  />
+</div>
+
+<!-- Search Results -->
+<div *ngIf="searchResults.length > 0" class="search-results">
+  <ul>
+    <li *ngFor="let saloon of searchResults">
+      <a [routerLink]="['/saloon', saloon.id]">{{ saloon.saloonName }}</a>
+    </li>
+  </ul>
+</div>
 </main>

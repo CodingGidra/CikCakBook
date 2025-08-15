@@ -2,7 +2,7 @@
   <!-- Header: Admin + Name + Description -->
   <div class="hairsaloon-header">
     <div class="header-admin" *ngIf="user">Welcome, {{ user.adminUsername }}!</div>
-    <div class="saloon-name">{{ shop.name }}</div>
+    <div class="saloon-name">{{ shop.saloonName }}</div>
     <div class="saloon-desc">
       <div class="map-details">
         <p><strong>Location:</strong> {{ shop.location }}</p>
@@ -15,7 +15,6 @@
 
   <!-- Map & Calendar -->
   <div class="hairsaloon-map-calendar">
-    <!-- Calendar -->
     <div class="calendar-section">
       <h3>Weekly Calendar</h3>
       <div class="calendar-placeholder">Calendar for this week</div>
@@ -24,14 +23,13 @@
       </div>
     </div>
 
-    <!-- Map -->
     <div class="map-section">
       <h3>Location</h3>
       <div class="map-placeholder">Google Maps will be here</div>
     </div>
   </div>
 
-  <!-- Image Slider Section - poseban div na dnu stranice -->
+  <!-- Image Slider Section -->
   <div class="image-slider-section">
     <h3>Our Gallery</h3>
     <div class="image-slider">
@@ -42,7 +40,7 @@
         <img src="https://via.placeholder.com/300x150?text=Image+4" alt="Image 4" />
         <img src="https://via.placeholder.com/300x150?text=Image+5" alt="Image 5" />
 
-        <!-- Duplicate for seamless infinite scroll -->
+        <!-- Duplicate for infinite scroll -->
         <img src="https://via.placeholder.com/300x150?text=Image+1" alt="Image 1" />
         <img src="https://via.placeholder.com/300x150?text=Image+2" alt="Image 2" />
         <img src="https://via.placeholder.com/300x150?text=Image+3" alt="Image 3" />
