@@ -1,0 +1,128 @@
+/* Full screen wrapper */
+.subscription-page {
+  display: flex;
+  flex-direction: column; /* stack info + form */
+  justify-content: center; /* horizontalno centriranje */
+  align-items: center;     /* vertikalno centriranje */
+  height: 100vh;           /* cijeli viewport */
+  background: linear-gradient(to right, #ff9800, #ffb74d); /* moderni gradient */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  gap: 20px; /* razmak između info i forme */
+}
+
+/* Info div iznad forme */
+.info {
+  text-align: center;
+  background-color: #ffffff;
+  padding: 10px 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  color: #333;
+  width: 100%;
+  max-width: 420px;
+}
+
+.info h2 {
+  margin: 0 0 5px 0;
+  color: #ff9800;
+}
+
+.info p {
+  margin: 0;
+  font-size: 16px;
+}
+
+/* Forma */
+form {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  width: 100%;
+  max-width: 420px; /* širina forme */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Naslov unutar forme (ako ima) */
+h2 {
+  text-align: center;
+  color: #ff9800;
+  margin-bottom: 20px;
+}
+
+/* Grupe inputa */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #333;
+}
+
+input {
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #ff9800;
+}
+
+/* Dugmad */
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button[type="submit"] {
+  background-color: #ff9800;
+  color: #fff;
+}
+
+button[type="submit"]:hover {
+  background-color: #e68900;
+  transform: scale(1.05);
+}
+
+button[type="button"] {
+  background-color: #ccc;
+}
+
+button[type="button"]:hover {
+  background-color: #b3b3b3;
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  form {
+    padding: 30px 20px;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+  
+  .info {
+    padding: 8px 12px;
+  }
+}

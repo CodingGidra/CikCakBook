@@ -147,3 +147,22 @@ body, :host {
 .map-details p {
   margin: 0;
 }
+
+.subscribe-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: yellow;
+  color: red;
+  border: 3px solid red;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.subscribe-btn:hover {
+  background-color: #e68900;
+}

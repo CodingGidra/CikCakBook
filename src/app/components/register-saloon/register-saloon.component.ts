@@ -32,6 +32,7 @@ export class RegisterSaloonComponent {
     this.form = this.fb.group({
       saloonName: ['', Validators.required],
       location: ['', Validators.required],
+      address: ['', Validators.required],
       description: [''],
       subscription: [0, [Validators.required, Validators.min(0)]],
       category: [''],
@@ -64,10 +65,9 @@ export class RegisterSaloonComponent {
   this.authService.registerSaloon(this.form.value).subscribe({
     next: () => {
       this.successMessage = 'Saloon successfully created!';
-      this.form.reset();        // Reset forme
-      this.submitted = false;   // Reset submit flag
-      // Opcionalno: redirect
-      // this.router.navigate(['/sign-in']);
+      this.form.reset();        
+      this.submitted = false;   
+      this.router.navigate(['/sign-in']);
     },
     error: () => {
       this.errorMessage = 'Registration failed';

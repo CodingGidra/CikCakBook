@@ -1,0 +1,33 @@
+<div class="subscription-page">
+ <div class="info">
+     <h2>Subscribe to Saloon</h2>
+  <p>Saloon ID: {{ saloonId }}</p>
+ </div>
+
+  <form #cardForm="ngForm" (ngSubmit)="confirmSubscription()">
+    <div class="form-group">
+      <label for="cardName">Name on Card</label>
+      <input type="text" id="cardName" name="cardName" [(ngModel)]="card.name" required />
+    </div>
+
+    <div class="form-group">
+      <label for="cardNumber">Card Number</label>
+      <input type="text" id="cardNumber" name="cardNumber" [(ngModel)]="card.number" required maxlength="16" />
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="expiry">Expiry</label>
+        <input type="text" id="expiry" name="expiry" [(ngModel)]="card.expiry" placeholder="MM/YY" required />
+      </div>
+
+      <div class="form-group">
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" name="cvv" [(ngModel)]="card.cvv" required maxlength="4" />
+      </div>
+    </div>
+
+    <button type="submit">Confirm Subscription</button>
+    <button type="button" (click)="cancel()">Cancel</button>
+  </form>
+</div>

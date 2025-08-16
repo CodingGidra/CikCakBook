@@ -2,17 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgIf } from '@angular/common';
 import { AuthService, BarberShop } from '../../services/AuthService';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-hairsaloon-page',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf, CommonModule,RouterLink],
   templateUrl: './hairsaloon-page.component.html',
   styleUrls: ['./hairsaloon-page.component.css'],
 })
 export class HairsaloonPageComponent implements OnInit {
-  user: BarberShop | null = null;   // opcionalno za Welcome
-  shop: BarberShop | null = null;   // ovo je saloon koji prikazujemo
+  user: BarberShop | null = null;   
+  shop: BarberShop | null = null;   
 
   constructor(private route: ActivatedRoute, private auth: AuthService) {}
 

@@ -20,5 +20,10 @@ export const routes: Routes = [
     path: 'saloon/:id',
     loadComponent: () =>
       import('./components/hairsaloon-page/hairsaloon-page.component').then(m => m.HairsaloonPageComponent)
+  },
+  {
+    path: 'saloon/:id/subscribe',
+    loadComponent: () =>
+      import('./components/user-subscription/user-subscription.component').then(m => m.UserSubscriptionComponent)
   }
 ];

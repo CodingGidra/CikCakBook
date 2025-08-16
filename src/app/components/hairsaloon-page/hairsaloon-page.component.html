@@ -1,4 +1,11 @@
 <div *ngIf="shop" class="hairsaloon-main-container">
+
+  <button 
+  class="subscribe-btn"
+  [routerLink]="['/saloon', shop.id, 'subscribe']">
+  Subscribe
+</button>
+
   <!-- Header: Admin + Name + Description -->
   <div class="hairsaloon-header">
     <div class="header-admin" *ngIf="user">Welcome, {{ user.adminUsername }}!</div>
@@ -6,9 +13,17 @@
     <div class="saloon-desc">
       <div class="map-details">
         <p><strong>Location:</strong> {{ shop.location }}</p>
+        <p>
+          <strong>Address:</strong>
+          <a [href]="'https://www.google.com/maps/search/?api=1&query=' + shop.address" target="_blank"
+            rel="noopener noreferrer">
+            {{ shop.address }}
+          </a>
+        </p>
         <p><strong>Open from:</strong> {{ shop.openingHours }}</p>
         <p><strong>Category:</strong> {{ shop.category }}</p>
-        <p><strong>Description:</strong> {{ shop.description || 'The best fades and shaves in town. Walk-ins welcome!' }}</p>
+        <p><strong>Description:</strong> {{ shop.description || 'The best fades and shaves in town. Walk-ins welcome!'
+          }}</p>
       </div>
     </div>
   </div>
@@ -24,8 +39,8 @@
     </div>
 
     <div class="map-section">
-      <h3>Location</h3>
-      <div class="map-placeholder">Google Maps will be here</div>
+      <h3>Ask a Question</h3>
+      <div class="map-placeholder">Implement chat to saloon here</div>
     </div>
   </div>
 

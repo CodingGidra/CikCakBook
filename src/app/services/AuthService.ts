@@ -7,6 +7,7 @@ export interface BarberShop {
   id: string;
   saloonName: string;
   location: string;
+  address: string;
   description?: string;
   subscription?: number;
   category?: string;
