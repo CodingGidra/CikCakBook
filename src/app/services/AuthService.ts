@@ -29,12 +29,11 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  // Sign in provjera preko servera
-  signIn(username: string, password: string): Observable<boolean> {
+  signIn(email: string, password: string): Observable<boolean> {
     return this.http.get<BarberShop[]>(`${this.apiUrl}/barberShops`).pipe(
-      map((shops) => {
-        const user = shops.find(
-          (s) => s.adminUsername === username && s.password === password
+      map((saloons) => {
+        const user = saloons.find(
+          (saloon) => saloon.adminEmail === email && saloon.password === password
         );
         if (user) {
           this.currentUser = user;
@@ -45,9 +44,13 @@ export class AuthService {
     );
   }
 
-  getSaloonById(): BarberShop | null {
-    return this.currentUser;
-  }
+  // getSaloonById(): BarberShop | null {
+  //   return this.currentUser;
+  // }
+
+  getBarberShopById(id: string) {
+  return this.http.get<BarberShop>(`${this.apiUrl}/barberShops/${id}`);
+}
 
   getCurrentUser(): BarberShop | null {
     return this.currentUser;

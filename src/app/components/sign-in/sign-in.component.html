@@ -4,9 +4,9 @@
 
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="form-group">
-      <label for="username">Username:</label>
-      <input type="text" id="username" formControlName="username" required />
-    </div>
+  <label for="email">Email:</label>
+  <input type="email" id="email" formControlName="email" required placeholder="you@example.com" />
+</div>
 
     <div class="form-group">
       <label for="password">Password:</label>

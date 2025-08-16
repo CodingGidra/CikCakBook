@@ -27,7 +27,7 @@ export class SignInComponent {
     private router: Router
   ) {
     this.form = this.fb.group({
-      username: ['', Validators.required], // Matches AuthService property name
+      email: ['', Validators.required, Validators.email], 
       password: ['', Validators.required],
     });
   }
@@ -35,9 +35,9 @@ export class SignInComponent {
   submit() {
     if (this.form.invalid) return;
 
-    const { username, password } = this.form.value;
+    const { email, password } = this.form.value;
 
-    this.auth.signIn(username, password).subscribe({
+    this.auth.signIn(email, password).subscribe({
       next: (loggedIn) => {
         if (loggedIn) {
           const user = this.auth.getCurrentUser();
