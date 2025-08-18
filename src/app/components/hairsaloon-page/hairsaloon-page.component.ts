@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NgIf } from '@angular/common';
 import { AuthService, BarberShop } from '../../services/AuthService';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -8,7 +7,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-hairsaloon-page',
   standalone: true,
-  imports: [NgIf, CommonModule,RouterLink],
+  imports: [CommonModule,RouterLink],
   templateUrl: './hairsaloon-page.component.html',
   styleUrls: ['./hairsaloon-page.component.css'],
 })

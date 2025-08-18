@@ -1,23 +1,10 @@
 
-@media (max-width: 900px) {
-  .nav-bar {
-    padding: 1rem 2vw;
-  }
-}
-@media (max-width: 900px) {
-  .nav-bar {
-    padding: 1rem 2vw;
-  }
-  .nav-bar-content {
-    gap: 1rem;
-  }
-}
 .nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   width: 100%;
   margin: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
   background: #111;
   padding: 1rem 0;
   box-sizing: border-box;
@@ -25,6 +12,7 @@
   display: flex;
   justify-content: center;
 }
+
 .nav-bar-content {
   display: flex;
   justify-content: flex-end;
@@ -33,7 +21,8 @@
   width: 100%;
   padding-right: calc(2vw + 5px);
 }
-.nav-link {
+
+.nav-link, .nav-btn {
   color: #fff;
   text-decoration: none;
   font-size: 1.1rem;
@@ -41,7 +30,21 @@
   border-radius: 8px;
   background: #222;
   transition: background 0.2s;
+  border: none;
+  cursor: pointer;
 }
-.nav-link:hover {
-  background: #444;
+.nav-link:hover, .nav-btn:hover { background: #444; }
+
+@media (max-width: 900px) {
+  .nav-bar { padding: 1rem 2vw; }
+  .nav-bar-content { gap: 1rem; }
+}
+
+/* app.component.css (ili global styles.css) */
+.page-content {
+  /* Sticky header ne traži padding-top.
+     Ako koristiš ANCHOR linkove (#id), dodaj:
+     scroll-padding-top: 72px;  // približna visina navbara
+  */
+  min-height: 100dvh;
 }

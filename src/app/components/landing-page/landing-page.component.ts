@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { AuthService, BarberShop } from '../../services/AuthService';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -8,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [NavBarComponent, CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.css']
 })
@@ -28,6 +27,7 @@ export class LandingPageComponent {
       this.searchResults = shops.filter(saloonItem =>
         saloonItem.saloonName.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
+      console.log('Filtered results:', this.searchResults);
     });
   }
 }

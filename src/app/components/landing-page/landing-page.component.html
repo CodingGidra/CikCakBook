@@ -1,22 +1,26 @@
-<app-nav-bar />
-<main class="main">
-	<div class="landing-content">
-  <span class="search-label">Find hair-cut saloon.&nbsp;</span> 
-  <input 
-    type="text" 
-    class="search-input" 
-    placeholder="Search..." 
-    [(ngModel)]="searchTerm" 
-    (ngModelChange)="onSearch()"
-  />
-</div>
+<div class="landing-page">
+  <div class="landing-content">
+    <h1>Find your saloon</h1>
+    <p>Search for the best haircut places near you</p>
 
-<!-- Search Results -->
-<div *ngIf="searchResults.length > 0" class="search-results">
-  <ul>
-    <li *ngFor="let saloon of searchResults">
-      <a [routerLink]="['/saloon', saloon.id]">{{ saloon.saloonName }}</a>
-    </li>
-  </ul>
+    <!-- Search wrapper -->
+    <div class="search-wrapper">
+      <input type="text" class="search-input" placeholder="Enter saloon name..." [(ngModel)]="searchTerm"
+        (input)="onSearch()" />
+
+      <!-- Search results -->
+      <div *ngIf="searchResults.length > 0" class="search-results">
+        <ul>
+          <li *ngFor="let saloon of searchResults">
+            <a [routerLink]="['/saloon', saloon.id]">{{ saloon.saloonName }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="landing-links">
+      <a routerLink="/sign-in" class="sign-link">Sign in</a>
+      <a routerLink="/register-saloon" class="register-link">Register saloon</a>
+    </div>
+  </div>
 </div>
-</main>
