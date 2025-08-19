@@ -20,8 +20,7 @@
         </p>
         <p><strong>Open from:</strong> {{ shop.openingHours }}</p>
         <p><strong>Category:</strong> {{ shop.category }}</p>
-        <p><strong>Description:</strong> {{ shop.description || 'The best fades and shaves in town. Walk-ins welcome!'
-          }}</p>
+        <p><strong>Description:</strong> {{ shop.description || 'The best fades and shaves in town. Walk-ins welcome!' }}</p>
       </div>
     </div>
   </div>
@@ -30,9 +29,25 @@
   <div class="hairsaloon-map-calendar">
     <div class="calendar-section">
       <h3>Weekly Calendar</h3>
-      <div class="calendar-placeholder">Calendar for this week</div>
+      <div class="calendar-placeholder">
+        
+        <!-- DATE -->
+        <mat-form-field appearance="outline">
+          <mat-label>Meeting date</mat-label>
+          <input matInput [matDatepicker]="datepicker" [(ngModel)]="selectedDate">
+          <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+          <mat-datepicker #datepicker></mat-datepicker>
+        </mat-form-field>
+
+        <!-- TIME -->
+        <label>Meeting time</label>
+        <input type="time" [(ngModel)]="selectedTime">
+
+        <p>📅 Date: {{ selectedDate }} | ⏰ Time: {{ selectedTime }}</p>
+
+      </div>
       <div class="calendar-actions">
-        <button class="btn-primary">Book Appointment</button>
+        <button class="btn-primary" (click)="bookAppointment()">Book Appointment</button>
       </div>
     </div>
 
@@ -44,21 +59,20 @@
 
   <!-- Image Slider Section -->
   <div class="image-slider-section">
-    <h3>Our Gallery</h3>
     <div class="image-slider">
       <div class="slider-track">
-        <img src="https://via.placeholder.com/300x150?text=Image+1" alt="Image 1" />
-        <img src="https://via.placeholder.com/300x150?text=Image+2" alt="Image 2" />
-        <img src="https://via.placeholder.com/300x150?text=Image+3" alt="Image 3" />
-        <img src="https://via.placeholder.com/300x150?text=Image+4" alt="Image 4" />
-        <img src="https://via.placeholder.com/300x150?text=Image+5" alt="Image 5" />
+        <img src="assets/img_2.jpg" alt="Image amir" />
+        <img src="assets/img_3.jpg" alt="Image 2" />
+        <img src="assets/img_4.jpg" alt="Image 3" />
+        <img src="assets/img_5.jpg" alt="Image 4" />
+        <img src="assets/img_6.jpg" alt="Image 5" />
 
         <!-- Duplicate for infinite scroll -->
-        <img src="https://via.placeholder.com/300x150?text=Image+1" alt="Image 1" />
-        <img src="https://via.placeholder.com/300x150?text=Image+2" alt="Image 2" />
-        <img src="https://via.placeholder.com/300x150?text=Image+3" alt="Image 3" />
-        <img src="https://via.placeholder.com/300x150?text=Image+4" alt="Image 4" />
-        <img src="https://via.placeholder.com/300x150?text=Image+5" alt="Image 5" />
+        <img src="assets/img_2.jpg" alt="Image amir" />
+        <img src="assets/img_3.jpg" alt="Image 2" />
+        <img src="assets/img_4.jpg" alt="Image 3" />
+        <img src="assets/img_5.jpg" alt="Image 4" />
+        <img src="assets/img_6.jpg" alt="Image 5" />
       </div>
     </div>
   </div>

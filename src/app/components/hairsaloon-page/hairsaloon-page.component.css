@@ -1,9 +1,8 @@
-/* Global */
+
 body, :host {
   font-family: 'Segoe UI', 'Arial', sans-serif;
 }
 
-/* Glavni kontejner */
 .hairsaloon-main-container {
   display: flex;
   flex-direction: column;
@@ -14,7 +13,6 @@ body, :host {
   min-height: 80vh;
 }
 
-/* Header sekcija */
 .hairsaloon-header {
   display: flex;
   flex-direction: row;
@@ -60,20 +58,6 @@ body, :host {
   flex: 1;
 }
 
-.calendar-placeholder,
-.map-placeholder {
-  height: 250px;
-  background: #444;
-  color: #bbb;
-  border-radius: 8px;
-  padding: 2rem;
-  text-align: center;
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .calendar-actions {
   margin-top: 16px;
 }
@@ -86,7 +70,7 @@ body, :host {
   border-radius: 4px;
   cursor: pointer;
 }
-/* Posebna sekcija slidera */
+
 .image-slider-section {
   margin-top: 3rem;
   padding: 2rem 0;
@@ -111,20 +95,19 @@ body, :host {
 /* Slider track za beskonačni loop */
 .slider-track {
   display: flex;
-  width: calc(10 * 300px); /* broj slika * širina svake slike */
+  width: calc(10 * 300px); 
   animation: scrollRight 20s linear infinite;
 }
 
-/* Svaka slika */
 .slider-track img {
-  width: 300px;
-  height: 150px;
+  width: 350px;
+  height: 250px;
   object-fit: cover;
-  margin-right: 16px;
+  margin-right: 15px;
   border-radius: 8px;
 }
 
-/* Beskonačni scroll s lijeva na desno */
+
 @keyframes scrollRight {
   0% { transform: translateX(-50%); }
   100% { transform: translateX(0); }

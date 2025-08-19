@@ -27,7 +27,7 @@ export class SignInComponent {
     private router: Router
   ) {
     this.form = this.fb.group({
-      email: ['', Validators.required, Validators.email], 
+      email: ['', [Validators.required, Validators.email]], 
       password: ['', Validators.required],
     });
   }

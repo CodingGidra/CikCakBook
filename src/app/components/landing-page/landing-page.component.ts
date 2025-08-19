@@ -27,7 +27,6 @@ export class LandingPageComponent {
       this.searchResults = shops.filter(saloonItem =>
         saloonItem.saloonName.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
-      console.log('Filtered results:', this.searchResults);
     });
   }
 }
